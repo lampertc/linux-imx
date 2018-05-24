@@ -166,6 +166,7 @@
 		};
 	};
 
+/*
 	sound {
 		compatible = "fsl,imx6q-sabresd-wm8962",
 			   "fsl,imx-audio-wm8962";
@@ -192,8 +193,9 @@
 		hp-det-gpios = <&gpio7 8 1>;
 		mic-det-gpios = <&gpio1 9 1>;
 	};
+*/
 
-    sound-adau {
+    sound {
         compatible = "fsl,imx-audio-adau1761";
         model = "adau1761-audio";
         audio-cpu = <&esai>;
@@ -447,9 +449,9 @@
 	sda-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 
-    adau1761: adau1761@38 {
+    adau1761: adau1761@70 {
         compatible = "adi,adau1761";
-        reg = <0x38>;
+        reg = <0x70>;
         clocks = <&clks IMX6QDL_CLK_ESAI_PODF>;
 //        adi,pin-config = /bits/ 8 <0x4 0x7 0x5 0x5 0x4 0x4
 //                                               0x4 0x4 0x4 0x4 0x4 0x4>;
