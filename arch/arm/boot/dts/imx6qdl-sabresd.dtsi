@@ -166,7 +166,7 @@
 		};
 	};
 
-/*
+
 	sound {
 		compatible = "fsl,imx6q-sabresd-wm8962",
 			   "fsl,imx-audio-wm8962";
@@ -193,10 +193,10 @@
 		hp-det-gpios = <&gpio7 8 1>;
 		mic-det-gpios = <&gpio1 9 1>;
 	};
-*/
 
-    sound {
-        compatible = "fsl,imx-audio-adau1761";
+
+    asound {
+        compatible = "adi,adau1761";
         model = "adau1761-audio";
         audio-cpu = <&esai>;
         audio-codec = <&adau1761>;
@@ -207,8 +207,8 @@
 //            "Ext Spk", "SPKOUTR",
 //            "AMIC", "MICBIAS",
 //            "IN3R", "AMIC";
-        mux-int-port = <2>;
-        mux-ext-port = <3>;
+        mux-int-port = <1>;
+        mux-ext-port = <4>;
     };
 
 
@@ -915,6 +915,32 @@
 				MX6QDL_PAD_GPIO_1__WDOG2_B 0x80000000
 			>;
 		};
+
+      pinctrl_esai: esaigrp {
+             fsl,pins = <
+                MX6QDL_PAD_ENET_MDIO__ESAI_RX_CLK   0x1b0b0
+                MX6QDL_PAD_GPIO_9__ESAI_RX_FS       0x1b0b0
+                MX6QDL_PAD_GPIO_3__ESAI_RX_HF_CLK   0x1b0b0
+                MX6QDL_PAD_ENET_TXD1__ESAI_TX2_RX3  0x170b0
+                MX6QDL_PAD_ENET_TX_EN__ESAI_TX3_RX2 0x170b0
+             >;
+        };
+/*
+*		pinctrl_esai: esaigrp {
+*			fsl,pins = <
+*				MX6QDL_PAD_ENET_CRS_DV__ESAI_TX_CLK 0x1b030
+*				MX6QDL_PAD_ENET_RXD1__ESAI_TX_FS    0x1b030
+*				MX6QDL_PAD_ENET_TX_EN__ESAI_TX3_RX2 0x1b030
+*				MX6QDL_PAD_GPIO_5__ESAI_TX2_RX3     0x1b030
+*				MX6QDL_PAD_ENET_TXD0__ESAI_TX4_RX1  0x1b030
+*				MX6QDL_PAD_ENET_MDC__ESAI_TX5_RX0   0x1b030
+*				MX6QDL_PAD_GPIO_17__ESAI_TX0        0x1b030
+*				MX6QDL_PAD_NANDF_CS3__ESAI_TX1      0x1b030
+*				MX6QDL_PAD_ENET_MDIO__ESAI_RX_CLK   0x1b030
+*				MX6QDL_PAD_GPIO_9__ESAI_RX_FS       0x1b030
+*			>;
+*		};
+*/
 	};
 
 	gpio_leds {
@@ -1105,3 +1131,18 @@
 	fsl,ext-reset-output;
 	status = "okay";
 };
+
+
+&esai{
+    compatible = "fsl,imx35-esai";
+    pinctrl-0 = <&pinctrl_esai>;
+    clock-names = "fsys", "core", "extal";
+    clocks = <&clks IMX6QDL_CLK_PLL3_PFD2_508M>, <&clks IMX6QDL_CLK_ESAI_IPG>, <&clks IMX6QDL_CLK_ESAI_EXTAL>;
+    dmas = <&sdma 23 21 0>, <&sdma 24 21 0>;
+    dma-names = "rx", "tx";
+    fsl,fifo-depth = <128>;
+    status = "okay";
+};
+
+
+
