@@ -916,31 +916,33 @@
 			>;
 		};
 
-      pinctrl_esai: esaigrp {
-             fsl,pins = <
-                MX6QDL_PAD_ENET_MDIO__ESAI_RX_CLK   0x1b0b0
-                MX6QDL_PAD_GPIO_9__ESAI_RX_FS       0x1b0b0
-                MX6QDL_PAD_GPIO_3__ESAI_RX_HF_CLK   0x1b0b0
-                MX6QDL_PAD_ENET_TXD1__ESAI_TX2_RX3  0x170b0
-                MX6QDL_PAD_ENET_TX_EN__ESAI_TX3_RX2 0x170b0
-             >;
-        };
 /*
-*		pinctrl_esai: esaigrp {
-*			fsl,pins = <
-*				MX6QDL_PAD_ENET_CRS_DV__ESAI_TX_CLK 0x1b030
-*				MX6QDL_PAD_ENET_RXD1__ESAI_TX_FS    0x1b030
-*				MX6QDL_PAD_ENET_TX_EN__ESAI_TX3_RX2 0x1b030
-*				MX6QDL_PAD_GPIO_5__ESAI_TX2_RX3     0x1b030
-*				MX6QDL_PAD_ENET_TXD0__ESAI_TX4_RX1  0x1b030
-*				MX6QDL_PAD_ENET_MDC__ESAI_TX5_RX0   0x1b030
-*				MX6QDL_PAD_GPIO_17__ESAI_TX0        0x1b030
-*				MX6QDL_PAD_NANDF_CS3__ESAI_TX1      0x1b030
-*				MX6QDL_PAD_ENET_MDIO__ESAI_RX_CLK   0x1b030
-*				MX6QDL_PAD_GPIO_9__ESAI_RX_FS       0x1b030
-*			>;
-*		};
+*      pinctrl_esai: esaigrp {
+*             fsl,pins = <
+*                MX6QDL_PAD_ENET_MDIO__ESAI_RX_CLK   0x1b0b0
+*                MX6QDL_PAD_GPIO_9__ESAI_RX_FS       0x1b0b0
+*                MX6QDL_PAD_GPIO_3__ESAI_RX_HF_CLK   0x1b0b0
+*                MX6QDL_PAD_ENET_TXD1__ESAI_TX2_RX3  0x170b0
+*                MX6QDL_PAD_ENET_TX_EN__ESAI_TX3_RX2 0x170b0
+*             >;
+*        };
 */
+
+		pinctrl_esai: esaigrp {
+			fsl,pins = <
+				MX6QDL_PAD_ENET_CRS_DV__ESAI_TX_CLK 0x1b030
+				MX6QDL_PAD_ENET_RXD1__ESAI_TX_FS    0x1b030
+				MX6QDL_PAD_ENET_TX_EN__ESAI_TX3_RX2 0x1b030
+				MX6QDL_PAD_GPIO_5__ESAI_TX2_RX3     0x1b030
+				MX6QDL_PAD_ENET_TXD0__ESAI_TX4_RX1  0x1b030
+				MX6QDL_PAD_ENET_MDC__ESAI_TX5_RX0   0x1b030
+				MX6QDL_PAD_GPIO_17__ESAI_TX0        0x1b030
+				MX6QDL_PAD_NANDF_CS3__ESAI_TX1      0x1b030
+				MX6QDL_PAD_ENET_MDIO__ESAI_RX_CLK   0x1b030
+				MX6QDL_PAD_GPIO_9__ESAI_RX_FS       0x1b030
+			>;
+		};
+
 	};
 
 	gpio_leds {
