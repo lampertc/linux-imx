@@ -12,7 +12,6 @@
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
-#include <dt-bindings/sound/soc/codecs/adau17x1.h>
 
 / {
 	aliases {
