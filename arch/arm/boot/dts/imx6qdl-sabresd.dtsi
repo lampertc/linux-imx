@@ -454,7 +454,7 @@
         compatible = "adi,adau1761";
         reg = <0x70>;
 //        clocks = <&clks IMX6QDL_CLK_ESAI_PODF>;
-        clocks = <&clks IMX6QDL_CLK_ESAI_EXTAL>;
+        clocks = <&clks IMX6QDL_CLK_ESAI_PRED>;
 //        adi,pin-config = /bits/ 8 <0x4 0x7 0x5 0x5 0x4 0x4
 //                                               0x4 0x4 0x4 0x4 0x4 0x4>;
     };
