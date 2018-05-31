@@ -451,15 +451,16 @@
 	sda-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 
-    adau1761: adau1761@70 {
+    adau1761: adau1761@38 {
         compatible = "adi,adau1761";
-        reg = <0x70>;
-//        clocks = <&clks IMX6QDL_CLK_ESAI_PODF>;
-        clocks = <&clks IMX6QDL_CLK_ESAI_EXTAL>;
+        reg = <0x38>;
+        clocks = <&clks IMX6QDL_CLK_ESAI_PODF>;
+//        clocks = <&clks IMX6QDL_CLK_ESAI_EXTAL>;
 //        adi,pin-config = /bits/ 8 <0x4 0x7 0x5 0x5 0x4 0x4
 //                                               0x4 0x4 0x4 0x4 0x4 0x4>;
     };
 
+/*
 	fts_ts@38 {
                compatible = "focaltech,fts";
                reg = <0x38>;
@@ -471,6 +472,7 @@
                touchscreen-size-x = <480>;
                touchscreen-size-y = <272>;
 	};
+*/
 
 	pmic: pfuze100@08 {
 		compatible = "fsl,pfuze100";
