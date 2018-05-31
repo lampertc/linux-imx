@@ -459,7 +459,8 @@
 //        clocks = <&clks IMX6QDL_CLK_ESAI_EXTAL>;
 //        adi,pin-config = /bits/ 8 <0x4 0x7 0x5 0x5 0x4 0x4
 //                                               0x4 0x4 0x4 0x4 0x4 0x4>;
-    };
+
+//    };
 
 /*
 	fts_ts@38 {
