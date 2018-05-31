@@ -19,6 +19,8 @@
 #include <sound/tlv.h>
 #include <linux/platform_data/adau17x1.h>
 
+#include <linux/io.h>
+
 #include "adau17x1.h"
 #include "adau1761.h"
 
@@ -255,6 +257,8 @@ static const struct snd_kcontrol_new adau1761_input_mux_control =
 static int adau1761_dejitter_fixup(struct snd_soc_dapm_widget *w,
 	struct snd_kcontrol *kcontrol, int event)
 {
+   printk(KERN_WARNING "************************************************************adau print 1************************************************\n");
+
 	struct snd_soc_codec *codec = snd_soc_dapm_to_codec(w->dapm);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
@@ -448,6 +452,8 @@ static const struct snd_soc_dapm_route adau1761_dapm_routes[] = {
 static int adau1761_set_bias_level(struct snd_soc_codec *codec,
 				 enum snd_soc_bias_level level)
 {
+   printk(KERN_WARNING "************************************************************adau print 2************************************************\n");
+
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 
 	switch (level) {
@@ -476,6 +482,7 @@ static int adau1761_set_bias_level(struct snd_soc_codec *codec,
 static enum adau1761_output_mode adau1761_get_lineout_mode(
 	struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************adau print 3************************************************\n");
 	struct adau1761_platform_data *pdata = codec->dev->platform_data;
 
 	if (pdata)
@@ -486,6 +493,7 @@ static enum adau1761_output_mode adau1761_get_lineout_mode(
 
 static int adau1761_setup_digmic_jackdetect(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************adau print 4************************************************\n");
 	struct snd_soc_dapm_context *dapm = snd_soc_codec_get_dapm(codec);
 	struct adau1761_platform_data *pdata = codec->dev->platform_data;
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -548,6 +556,7 @@ static int adau1761_setup_digmic_jackdetect(struct snd_soc_codec *codec)
 
 static int adau1761_setup_headphone_mode(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************adau print 5************************************************\n");
 	struct snd_soc_dapm_context *dapm = snd_soc_codec_get_dapm(codec);
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
 	struct adau1761_platform_data *pdata = codec->dev->platform_data;
@@ -607,6 +616,7 @@ static int adau1761_setup_headphone_mode(struct snd_soc_codec *codec)
 
 static bool adau1761_readable_register(struct device *dev, unsigned int reg)
 {
+   printk(KERN_WARNING "************************************************************adau print 6************************************************\n");
 	switch (reg) {
 	case ADAU1761_DIGMIC_JACKDETECT:
 	case ADAU1761_REC_MIXER_LEFT0:
@@ -642,6 +652,7 @@ static bool adau1761_readable_register(struct device *dev, unsigned int reg)
 
 static int adau1761_codec_probe(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************adau print 7************************************************\n");
 	struct snd_soc_dapm_context *dapm = snd_soc_codec_get_dapm(codec);
 	struct adau1761_platform_data *pdata = codec->dev->platform_data;
 	struct adau *adau = snd_soc_codec_get_drvdata(codec);
@@ -773,6 +784,7 @@ static struct snd_soc_dai_driver adau1761_dai_driver = {
 int adau1761_probe(struct device *dev, struct regmap *regmap,
 	enum adau17x1_type type, void (*switch_mode)(struct device *dev))
 {
+   printk(KERN_WARNING "************************************************************adau print 8************************************************\n");
 	struct snd_soc_dai_driver *dai_drv;
 	const char *firmware_name;
 	int ret;
