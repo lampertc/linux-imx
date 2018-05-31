@@ -166,7 +166,7 @@
 		};
 	};
 
-/*
+
 	sound {
 		compatible = "fsl,imx6q-sabresd-wm8962",
 			   "fsl,imx-audio-wm8962";
@@ -193,7 +193,7 @@
 		hp-det-gpios = <&gpio7 8 1>;
 		mic-det-gpios = <&gpio1 9 1>;
 	};
-*/
+
 
     asound {
         compatible = "adi,adau1761";
@@ -387,30 +387,28 @@
 	pinctrl-0 = <&pinctrl_i2c1>;
 	status = "okay";
 
-//	codec: wm8962@1a {
-//		compatible = "wlf,wm8962";
-//		reg = <0x1a>;
-//		clocks = <&clks IMX6QDL_CLK_CKO>;
-//		DCVDD-supply = <&reg_audio>;
-//		DBVDD-supply = <&reg_audio>;
-//		AVDD-supply = <&reg_audio>;
-//		CPVDD-supply = <&reg_audio>;
-//		MICVDD-supply = <&reg_audio>;
-//		PLLVDD-supply = <&reg_audio>;
-//		SPKVDD1-supply = <&reg_audio>;
-//		SPKVDD2-supply = <&reg_audio>;
-//		gpio-cfg = <
-//			0x0000 /* 0:Default */
-//			0x0000 /* 1:Default */
-//			0x0013 /* 2:FN_DMICCLK */
-//			0x0000 /* 3:Default */
-//			0x8014 /* 4:FN_DMICCDAT */
-//			0x0000 /* 5:Default */
-//		>;
-//
-//		amic-mono;
-//       };
-//
+	codec: wm8962@1a {
+		compatible = "wlf,wm8962";
+		reg = <0x1a>;
+		clocks = <&clks IMX6QDL_CLK_CKO>;
+		DCVDD-supply = <&reg_audio>;
+		DBVDD-supply = <&reg_audio>;
+		AVDD-supply = <&reg_audio>;
+		CPVDD-supply = <&reg_audio>;
+		MICVDD-supply = <&reg_audio>;
+		PLLVDD-supply = <&reg_audio>;
+		SPKVDD1-supply = <&reg_audio>;
+		SPKVDD2-supply = <&reg_audio>;
+		gpio-cfg = <
+			0x0000 /* 0:Default */
+			0x0000 /* 1:Default */
+			0x0013 /* 2:FN_DMICCLK */
+			0x0000 /* 3:Default */
+			0x8014 /* 4:FN_DMICCDAT */
+			0x0000 /* 5:Default */
+		>;
+		amic-mono;
+       };
 
 	mma8451@1c {
 		compatible = "fsl,mma8451";
@@ -451,21 +449,18 @@
 	sda-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 
-//    adau1761: adau1761@38 {
-//        compatible = "adi,adau1761";
-//        reg = <0x38>;
+    adau1761: adau1761@70 {
+        compatible = "adi,adau1761";
+        reg = <0x70>;
 //        clocks = <&clks IMX6QDL_CLK_ESAI_PODF>;
-
-//        clocks = <&clks IMX6QDL_CLK_ESAI_EXTAL>;
+        clocks = <&clks IMX6QDL_CLK_ESAI_EXTAL>;
 //        adi,pin-config = /bits/ 8 <0x4 0x7 0x5 0x5 0x4 0x4
 //                                               0x4 0x4 0x4 0x4 0x4 0x4>;
+    };
 
-//    };
-
-/*
-	fts_ts@38 {
+	fts_ts@71 {
                compatible = "focaltech,fts";
-               reg = <0x38>;
+               reg = <0x71>;
                pinctrl-names = "default";
                pinctrl-0 = <&pinctrl_edt_ft5x06>;
                interrupt-parent = <&gpio4>;
@@ -474,7 +469,6 @@
                touchscreen-size-x = <480>;
                touchscreen-size-y = <272>;
 	};
-*/
 
 	pmic: pfuze100@08 {
 		compatible = "fsl,pfuze100";
@@ -635,7 +629,6 @@
 				MX6QDL_PAD_NANDF_D1__GPIO2_IO01 0x80000000
 				MX6QDL_PAD_NANDF_D2__GPIO2_IO02 0x80000000
 				MX6QDL_PAD_NANDF_D3__GPIO2_IO03 0x80000000
-				MX6QDL_PAD_GPIO_0__CCM_CLKO1    0x130b0
 				MX6QDL_PAD_ENET_TXD1__GPIO1_IO29 0x80000000
 				MX6QDL_PAD_EIM_D22__GPIO3_IO22  0x80000000
 				MX6QDL_PAD_ENET_CRS_DV__GPIO1_IO25 0x80000000
@@ -928,10 +921,11 @@
 
       pinctrl_esai: esaigrp {
              fsl,pins = <
-				    MX6QDL_PAD_DISP0_DAT20__AUD4_TXC    0x1b0b0
-				    MX6QDL_PAD_DISP0_DAT21__AUD4_TXD    0x1b0b0
-     				 MX6QDL_PAD_DISP0_DAT22__AUD4_TXFS   0x1b0b0
+                MX6QDL_PAD_DISP0_DAT20__AUD4_TXC    0x1b0b0
+                MX6QDL_PAD_DISP0_DAT21__AUD4_TXD    0x1b0b0
+                MX6QDL_PAD_DISP0_DAT22__AUD4_TXFS   0x1b0b0
                 MX6QDL_PAD_DISP0_DAT23__AUD4_RXD    0x1b0b0
+                MX6QDL_PAD_GPIO_0__CCM_CLKO1    0x130b0
 /*
 *                MX6QDL_PAD_ENET_MDIO__ESAI_RX_CLK   
 *                MX6QDL_PAD_GPIO_9__ESAI_RX_FS       0x1b0b0
