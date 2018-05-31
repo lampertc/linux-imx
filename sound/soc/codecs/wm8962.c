@@ -791,6 +791,7 @@ static const struct reg_default wm8962_reg[] = {
 
 static bool wm8962_volatile_register(struct device *dev, unsigned int reg)
 {
+   printk(KERN_WARNING "************************************************************wm8962 1************************************************\n");
 	switch (reg) {
 	case WM8962_CLOCKING1:
 	case WM8962_CLOCKING2:
@@ -809,6 +810,7 @@ static bool wm8962_volatile_register(struct device *dev, unsigned int reg)
 
 static bool wm8962_readable_register(struct device *dev, unsigned int reg)
 {
+   printk(KERN_WARNING "************************************************************wm8962 2************************************************\n");
 	switch (reg) {
 	case WM8962_LEFT_INPUT_VOLUME:
 	case WM8962_RIGHT_INPUT_VOLUME:
@@ -1445,6 +1447,7 @@ static bool wm8962_readable_register(struct device *dev, unsigned int reg)
 
 static int wm8962_reset(struct wm8962_priv *wm8962)
 {
+   printk(KERN_WARNING "************************************************************wm8962 3************************************************\n");
 	int ret;
 
 	ret = regmap_write(wm8962->regmap, WM8962_SOFTWARE_RESET, 0x6243);
@@ -1478,6 +1481,7 @@ static const DECLARE_TLV_DB_SCALE(eq_tlv, -1200, 100, 0);
 
 static int wm8962_dsp2_write_config(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 4************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 
 	return regcache_sync_region(wm8962->regmap,
@@ -1486,6 +1490,7 @@ static int wm8962_dsp2_write_config(struct snd_soc_codec *codec)
 
 static int wm8962_dsp2_set_enable(struct snd_soc_codec *codec, u16 val)
 {
+   printk(KERN_WARNING "************************************************************wm8962 5************************************************\n");
 	u16 adcl = snd_soc_read(codec, WM8962_LEFT_ADC_VOLUME);
 	u16 adcr = snd_soc_read(codec, WM8962_RIGHT_ADC_VOLUME);
 	u16 dac = snd_soc_read(codec, WM8962_ADC_DAC_CONTROL_1);
@@ -1509,6 +1514,7 @@ static int wm8962_dsp2_set_enable(struct snd_soc_codec *codec, u16 val)
 
 static int wm8962_dsp2_start(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 6************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 
 	wm8962_dsp2_write_config(codec);
@@ -1522,6 +1528,7 @@ static int wm8962_dsp2_start(struct snd_soc_codec *codec)
 
 static int wm8962_dsp2_stop(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 7************************************************\n");
 	wm8962_dsp2_set_enable(codec, 0);
 
 	snd_soc_write(codec, WM8962_DSP2_EXECCONTROL, WM8962_DSP2_STOP);
@@ -1538,6 +1545,7 @@ static int wm8962_dsp2_stop(struct snd_soc_codec *codec)
 static int wm8962_dsp2_ena_info(struct snd_kcontrol *kcontrol,
 				struct snd_ctl_elem_info *uinfo)
 {
+   printk(KERN_WARNING "************************************************************wm8962 8************************************************\n");
 	uinfo->type = SNDRV_CTL_ELEM_TYPE_BOOLEAN;
 
 	uinfo->count = 1;
@@ -1550,6 +1558,7 @@ static int wm8962_dsp2_ena_info(struct snd_kcontrol *kcontrol,
 static int wm8962_dsp2_ena_get(struct snd_kcontrol *kcontrol,
 			       struct snd_ctl_elem_value *ucontrol)
 {
+   printk(KERN_WARNING "************************************************************wm8962 9************************************************\n");
 	int shift = kcontrol->private_value;
 	struct snd_soc_codec *codec = snd_soc_kcontrol_codec(kcontrol);
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
@@ -1562,6 +1571,7 @@ static int wm8962_dsp2_ena_get(struct snd_kcontrol *kcontrol,
 static int wm8962_dsp2_ena_put(struct snd_kcontrol *kcontrol,
 			       struct snd_ctl_elem_value *ucontrol)
 {
+   printk(KERN_WARNING "************************************************************wm8962 10************************************************\n");
 	int shift = kcontrol->private_value;
 	struct snd_soc_codec *codec = snd_soc_kcontrol_codec(kcontrol);
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
@@ -1601,6 +1611,7 @@ out:
 static int wm8962_put_hp_sw(struct snd_kcontrol *kcontrol,
 			    struct snd_ctl_elem_value *ucontrol)
 {
+   printk(KERN_WARNING "************************************************************wm8962 11************************************************\n");
 	struct snd_soc_codec *codec = snd_soc_kcontrol_codec(kcontrol);
 	int ret;
 
@@ -1631,6 +1642,7 @@ static int wm8962_put_hp_sw(struct snd_kcontrol *kcontrol,
 static int wm8962_put_spk_sw(struct snd_kcontrol *kcontrol,
 			    struct snd_ctl_elem_value *ucontrol)
 {
+   printk(KERN_WARNING "************************************************************wm8962 12************************************************\n");
 	struct snd_soc_codec *codec = snd_soc_kcontrol_codec(kcontrol);
 	int ret;
 
@@ -1851,6 +1863,7 @@ SOC_SINGLE_TLV("SPKOUTR Mixer DACR Volume", WM8962_SPEAKER_MIXER_5,
 static int cp_event(struct snd_soc_dapm_widget *w,
 		    struct snd_kcontrol *kcontrol, int event)
 {
+   printk(KERN_WARNING "************************************************************wm8962 13************************************************\n");
 	switch (event) {
 	case SND_SOC_DAPM_POST_PMU:
 		msleep(5);
@@ -1867,6 +1880,7 @@ static int cp_event(struct snd_soc_dapm_widget *w,
 static int hp_event(struct snd_soc_dapm_widget *w,
 		    struct snd_kcontrol *kcontrol, int event)
 {
+   printk(KERN_WARNING "************************************************************wm8962 14************************************************\n");
 	struct snd_soc_codec *codec = snd_soc_dapm_to_codec(w->dapm);
 	int timeout;
 	int reg;
@@ -1961,6 +1975,7 @@ static int hp_event(struct snd_soc_dapm_widget *w,
 static int out_pga_event(struct snd_soc_dapm_widget *w,
 			 struct snd_kcontrol *kcontrol, int event)
 {
+   printk(KERN_WARNING "************************************************************wm8962 15************************************************\n");
 	struct snd_soc_codec *codec = snd_soc_dapm_to_codec(w->dapm);
 	int reg;
 
@@ -1994,6 +2009,7 @@ static int out_pga_event(struct snd_soc_dapm_widget *w,
 static int dsp2_event(struct snd_soc_dapm_widget *w,
 		      struct snd_kcontrol *kcontrol, int event)
 {
+   printk(KERN_WARNING "************************************************************wm8962 16************************************************\n");
 	struct snd_soc_codec *codec = snd_soc_dapm_to_codec(w->dapm);
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 
@@ -2360,6 +2376,7 @@ static const struct snd_soc_dapm_route wm8962_spk_stereo_intercon[] = {
 
 static int wm8962_add_widgets(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 17************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	struct wm8962_pdata *pdata = &wm8962->pdata;
 	struct snd_soc_dapm_context *dapm = snd_soc_codec_get_dapm(codec);
@@ -2409,6 +2426,7 @@ static const int sysclk_rates[] = {
 
 static void wm8962_configure_bclk(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 18************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	int dspclk, i;
 	int clocking2 = 0;
@@ -2511,6 +2529,7 @@ static void wm8962_configure_bclk(struct snd_soc_codec *codec)
 static int wm8962_set_bias_level(struct snd_soc_codec *codec,
 				 enum snd_soc_bias_level level)
 {
+   printk(KERN_WARNING "************************************************************wm8962 19************************************************\n");
 	switch (level) {
 	case SND_SOC_BIAS_ON:
 		break;
@@ -2560,6 +2579,7 @@ static int wm8962_hw_params(struct snd_pcm_substream *substream,
 			    struct snd_pcm_hw_params *params,
 			    struct snd_soc_dai *dai)
 {
+   printk(KERN_WARNING "************************************************************wm8962 20************************************************\n");
 	struct snd_soc_codec *codec = dai->codec;
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	snd_pcm_format_t sample_format = params_format(params);
@@ -2626,6 +2646,7 @@ static int wm8962_hw_params(struct snd_pcm_substream *substream,
 static int wm8962_set_dai_sysclk(struct snd_soc_dai *dai, int clk_id,
 				 unsigned int freq, int dir)
 {
+   printk(KERN_WARNING "************************************************************wm8962 21************************************************\n");
 	struct snd_soc_codec *codec = dai->codec;
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	int src;
@@ -2653,6 +2674,7 @@ static int wm8962_set_dai_sysclk(struct snd_soc_dai *dai, int clk_id,
 
 static int wm8962_set_dai_fmt(struct snd_soc_dai *dai, unsigned int fmt)
 {
+   printk(KERN_WARNING "************************************************************wm8962 22************************************************\n");
 	struct snd_soc_codec *codec = dai->codec;
 	int aif0 = 0;
 
@@ -2745,6 +2767,7 @@ static struct {
 static int fll_factors(struct _fll_div *fll_div, unsigned int Fref,
 		       unsigned int Fout)
 {
+   printk(KERN_WARNING "************************************************************wm8962 23************************************************\n");
 	unsigned int target;
 	unsigned int div;
 	unsigned int fratio, gcd_fll;
@@ -2822,6 +2845,7 @@ static int fll_factors(struct _fll_div *fll_div, unsigned int Fref,
 static int wm8962_set_fll(struct snd_soc_codec *codec, int fll_id, int source,
 			  unsigned int Fref, unsigned int Fout)
 {
+   printk(KERN_WARNING "************************************************************wm8962 24************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	struct _fll_div fll_div;
 	unsigned long timeout;
@@ -2932,6 +2956,7 @@ static int wm8962_set_fll(struct snd_soc_codec *codec, int fll_id, int source,
 
 static int wm8962_mute(struct snd_soc_dai *dai, int mute)
 {
+   printk(KERN_WARNING "************************************************************wm8962 25************************************************\n");
 	struct snd_soc_codec *codec = dai->codec;
 	int val, ret;
 
@@ -2988,6 +3013,7 @@ static struct snd_soc_dai_driver wm8962_dai = {
 
 static void wm8962_mic_work(struct work_struct *work)
 {
+   printk(KERN_WARNING "************************************************************wm8962 26************************************************\n");
 	struct wm8962_priv *wm8962 = container_of(work,
 						  struct wm8962_priv,
 						  mic_work.work);
@@ -3018,6 +3044,7 @@ static void wm8962_mic_work(struct work_struct *work)
 
 static irqreturn_t wm8962_irq(int irq, void *data)
 {
+   printk(KERN_WARNING "************************************************************wm8962 27************************************************\n");
 	struct device *dev = data;
 	struct wm8962_priv *wm8962 = dev_get_drvdata(dev);
 	unsigned int mask;
@@ -3121,6 +3148,7 @@ static irqreturn_t wm8962_irq(int irq, void *data)
  */
 int wm8962_mic_detect(struct snd_soc_codec *codec, struct snd_soc_jack *jack)
 {
+   printk(KERN_WARNING "************************************************************wm8962 28************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	struct snd_soc_dapm_context *dapm = snd_soc_codec_get_dapm(codec);
 	int irq_mask, enable;
@@ -3165,6 +3193,7 @@ static int beep_rates[] = {
 
 static void wm8962_beep_work(struct work_struct *work)
 {
+   printk(KERN_WARNING "************************************************************wm8962 29************************************************\n");
 	struct wm8962_priv *wm8962 =
 		container_of(work, struct wm8962_priv, beep_work);
 	struct snd_soc_codec *codec = wm8962->codec;
@@ -3203,6 +3232,7 @@ static void wm8962_beep_work(struct work_struct *work)
 static int wm8962_beep_event(struct input_dev *dev, unsigned int type,
 			     unsigned int code, int hz)
 {
+   printk(KERN_WARNING "************************************************************wm8962 30************************************************\n");
 	struct snd_soc_codec *codec = input_get_drvdata(dev);
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 
@@ -3228,6 +3258,7 @@ static ssize_t wm8962_beep_set(struct device *dev,
 			       struct device_attribute *attr,
 			       const char *buf, size_t count)
 {
+   printk(KERN_WARNING "************************************************************wm8962 31************************************************\n");
 	struct wm8962_priv *wm8962 = dev_get_drvdata(dev);
 	long int time;
 	int ret;
@@ -3245,6 +3276,7 @@ static DEVICE_ATTR(beep, 0200, NULL, wm8962_beep_set);
 
 static void wm8962_init_beep(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 32************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	int ret;
 
@@ -3282,6 +3314,7 @@ static void wm8962_init_beep(struct snd_soc_codec *codec)
 
 static void wm8962_free_beep(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 33************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 
 	device_remove_file(codec->dev, &dev_attr_beep);
@@ -3293,6 +3326,7 @@ static void wm8962_free_beep(struct snd_soc_codec *codec)
 
 static void wm8962_set_gpio_mode(struct wm8962_priv *wm8962, int gpio)
 {
+   printk(KERN_WARNING "************************************************************wm8962 34************************************************\n");
 	int mask = 0;
 	int val = 0;
 
@@ -3319,6 +3353,7 @@ static void wm8962_set_gpio_mode(struct wm8962_priv *wm8962, int gpio)
 #ifdef CONFIG_GPIOLIB
 static int wm8962_gpio_request(struct gpio_chip *chip, unsigned offset)
 {
+   printk(KERN_WARNING "************************************************************wm8962 35************************************************\n");
 	struct wm8962_priv *wm8962 = gpiochip_get_data(chip);
 
 	/* The WM8962 GPIOs aren't linearly numbered.  For simplicity
@@ -3342,6 +3377,7 @@ static int wm8962_gpio_request(struct gpio_chip *chip, unsigned offset)
 
 static void wm8962_gpio_set(struct gpio_chip *chip, unsigned offset, int value)
 {
+   printk(KERN_WARNING "************************************************************wm8962 36************************************************\n");
 	struct wm8962_priv *wm8962 = gpiochip_get_data(chip);
 	struct snd_soc_codec *codec = wm8962->codec;
 
@@ -3352,6 +3388,7 @@ static void wm8962_gpio_set(struct gpio_chip *chip, unsigned offset, int value)
 static int wm8962_gpio_direction_out(struct gpio_chip *chip,
 				     unsigned offset, int value)
 {
+   printk(KERN_WARNING "************************************************************wm8962 37************************************************\n");
 	struct wm8962_priv *wm8962 = gpiochip_get_data(chip);
 	struct snd_soc_codec *codec = wm8962->codec;
 	int ret, val;
@@ -3378,6 +3415,7 @@ static const struct gpio_chip wm8962_template_chip = {
 
 static void wm8962_init_gpio(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 38************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	struct wm8962_pdata *pdata = &wm8962->pdata;
 	int ret;
@@ -3398,6 +3436,7 @@ static void wm8962_init_gpio(struct snd_soc_codec *codec)
 
 static void wm8962_free_gpio(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 39************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 
 	gpiochip_remove(&wm8962->gpio_chip);
@@ -3414,6 +3453,7 @@ static void wm8962_free_gpio(struct snd_soc_codec *codec)
 
 static int wm8962_probe(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 40************************************************\n");
 	struct snd_soc_dapm_context *dapm = snd_soc_codec_get_dapm(codec);
 	int ret;
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
@@ -3475,6 +3515,7 @@ static int wm8962_probe(struct snd_soc_codec *codec)
 
 static int wm8962_remove(struct snd_soc_codec *codec)
 {
+   printk(KERN_WARNING "************************************************************wm8962 41************************************************\n");
 	struct wm8962_priv *wm8962 = snd_soc_codec_get_drvdata(codec);
 	int i;
 
@@ -3519,6 +3560,7 @@ static const struct regmap_config wm8962_regmap = {
 static int wm8962_set_pdata_from_of(struct i2c_client *i2c,
 				    struct wm8962_pdata *pdata)
 {
+   printk(KERN_WARNING "************************************************************wm8962 42************************************************\n");
 	const struct device_node *np = i2c->dev.of_node;
 	u32 val32;
 	int i;
@@ -3549,6 +3591,7 @@ static int wm8962_set_pdata_from_of(struct i2c_client *i2c,
 static int wm8962_i2c_probe(struct i2c_client *i2c,
 			    const struct i2c_device_id *id)
 {
+   printk(KERN_WARNING "************************************************************wm8962 43************************************************\n");
 	struct wm8962_pdata *pdata = dev_get_platdata(&i2c->dev);
 	struct wm8962_priv *wm8962;
 	unsigned int reg;
@@ -3783,6 +3826,7 @@ err:
 
 static int wm8962_i2c_remove(struct i2c_client *client)
 {
+   printk(KERN_WARNING "************************************************************wm8962 44************************************************\n");
 	snd_soc_unregister_codec(&client->dev);
 	pm_runtime_disable(&client->dev);
 	return 0;
@@ -3791,6 +3835,7 @@ static int wm8962_i2c_remove(struct i2c_client *client)
 #ifdef CONFIG_PM
 static int wm8962_runtime_resume(struct device *dev)
 {
+   printk(KERN_WARNING "************************************************************wm8962 45************************************************\n");
 	struct wm8962_priv *wm8962 = dev_get_drvdata(dev);
 	int ret;
 
@@ -3850,6 +3895,7 @@ disable_clock:
 
 static int wm8962_runtime_suspend(struct device *dev)
 {
+   printk(KERN_WARNING "************************************************************wm8962 46************************************************\n");
 	struct wm8962_priv *wm8962 = dev_get_drvdata(dev);
 
 	regmap_update_bits(wm8962->regmap, WM8962_PWR_MGMT_1,
