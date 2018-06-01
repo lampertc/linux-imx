@@ -36,7 +36,7 @@
 #define USE_ABS_MT
 #endif
 
-static int calibration[7] = {
+static int calibration[7 = {
 	65536,0,0,
 	0,65536,0,
 	65536
