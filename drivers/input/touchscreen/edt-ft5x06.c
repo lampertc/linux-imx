@@ -72,7 +72,7 @@
 enum edt_ver {
 	M06,
 	M09,
-};
+}
 
 struct edt_reg_addr {
 	int reg_threshold;
