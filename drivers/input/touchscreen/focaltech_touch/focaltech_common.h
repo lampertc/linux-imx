@@ -104,7 +104,7 @@ struct ft_chip_t {
 	unsigned char pramboot_idl;
 	unsigned char bootloader_idh;
 	unsigned char bootloader_idl;
-}
+};
 
 /* i2c communication*/
 int fts_i2c_write_reg(struct i2c_client *client, u8 regaddr, u8 regvalue);
