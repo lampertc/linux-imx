@@ -66,7 +66,7 @@
 
 #define ADAU1761_FIRMWARE "adau1761.bin"
 
-static const struct reg_default adau1761_reg_defaults[ = {
+static const struct reg_default adau1761_reg_defaults[] = {
 	{ ADAU1761_DEJITTER,			0x03 },
 	{ ADAU1761_DIGMIC_JACKDETECT,		0x00 },
 	{ ADAU1761_REC_MIXER_LEFT0,		0x00 },
