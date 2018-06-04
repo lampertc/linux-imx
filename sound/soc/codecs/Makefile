@@ -215,6 +215,18 @@ snd-soc-wm9705-objs := wm9705.o
 snd-soc-wm9712-objs := wm9712.o
 snd-soc-wm9713-objs := wm9713.o
 snd-soc-wm-hubs-objs := wm_hubs.o
+snd-soc-wm8962-objs := adau1701.o
+snd-soc-wm8962-objs := adau17x1.o
+snd-soc-wm8962-objs := adau1761.o
+snd-soc-wm8962-objs := adau1761-i2c.o
+snd-soc-wm8962-objs := adau1761-spi.o
+snd-soc-wm8962-objs := adau1781.o
+snd-soc-wm8962-objs := adau1781-i2c.o
+snd-soc-wm8962-objs := adau1781-spi.o
+snd-soc-wm8962-objs := adau1977.o
+snd-soc-wm8962-objs := adau1977-spi.o
+snd-soc-wm8962-objs := adau1977-i2c.o
+
 
 # Amp
 snd-soc-max9877-objs := max9877.o
