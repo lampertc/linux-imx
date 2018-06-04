@@ -96,7 +96,8 @@ obj-$(CONFIG_SND_SOC_IMX_CS42888) += snd-soc-imx-cs42888.o
 obj-$(CONFIG_SND_SOC_IMX_SGTL5000) += snd-soc-imx-sgtl5000.o
 obj-${CONFIG_SND_SOC_IMX_WM8958} += snd-soc-imx-wm8958.o
 obj-$(CONFIG_SND_SOC_IMX_WM8960) += snd-soc-imx-wm8960.o
-obj-$(CONFIG_SND_SOC_IMX_WM8962) += snd-soc-imx-wm8962.o
+obj-$(CONFIG_SND_SOC_IMX_WM8962) += adau1761.o
+# snd-soc-imx-wm8962.o
 obj-$(CONFIG_SND_SOC_IMX_XTOR) += snd-soc-imx-xtor.o
 obj-$(CONFIG_SND_SOC_IMX_RPMSG) += snd-soc-imx-rpmsg.o
 obj-$(CONFIG_SND_SOC_IMX_SII902X) += snd-soc-imx-sii902x.o
