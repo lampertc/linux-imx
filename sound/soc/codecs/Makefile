@@ -10,9 +10,6 @@ snd-soc-ad73311-objs := ad73311.o
 snd-soc-adau-utils-objs := adau-utils.o
 snd-soc-adau1373-objs := adau1373.o
 snd-soc-adau1701-objs := adau1701.o
-snd-soc-adau17x1-objs := adau17x1.o
-snd-soc-adau1761-objs := adau1761.o
-snd-soc-adau1761-i2c-objs := adau1761-i2c.o
 snd-soc-adau1761-spi-objs := adau1761-spi.o
 snd-soc-adau1781-objs := adau1781.o
 snd-soc-adau1781-i2c-objs := adau1781-i2c.o
@@ -196,7 +193,7 @@ snd-soc-wm8955-objs := wm8955.o
 snd-soc-wm8960-objs := wm8960.o
 snd-soc-wm8961-objs := wm8961.o
 snd-soc-wm8962-objs := wm8962.o
-# adau1761.o adau17x1.o adau-utils.o sigmadsp-regmap.o
+#   
 snd-soc-wm8971-objs := wm8971.o
 snd-soc-wm8974-objs := wm8974.o
 snd-soc-wm8978-objs := wm8978.o
@@ -216,17 +213,12 @@ snd-soc-wm9705-objs := wm9705.o
 snd-soc-wm9712-objs := wm9712.o
 snd-soc-wm9713-objs := wm9713.o
 snd-soc-wm-hubs-objs := wm_hubs.o
-# snd-soc-wm8962-objs := adau1701.o
-# snd-soc-wm8962-objs := adau17x1.o
-# snd-soc-wm8962-objs := adau1761.o
-# snd-soc-wm8962-objs := adau1761-i2c.o
-# snd-soc-wm8962-objs := adau1761-spi.o
-# snd-soc-wm8962-objs := adau1781.o
-# snd-soc-wm8962-objs := adau1781-i2c.o
-# snd-soc-wm8962-objs := adau1781-spi.o
-# snd-soc-wm8962-objs := adau1977.o
-# snd-soc-wm8962-objs := adau1977-spi.o
-# snd-soc-wm8962-objs := adau1977-i2c.o
+
+
+snd-soc-adau1761-objs := adau1761.o
+snd-soc-adau17x1-objs := adau17x1.o adau-utils.o sigmadsp-regmap.o
+snd-soc-adau1761-i2c-objs := adau1761-i2c.o
+
 
 
 # Amp
