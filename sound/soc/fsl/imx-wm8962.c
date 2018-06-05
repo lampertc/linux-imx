@@ -40,7 +40,7 @@ struct imx_wm8962_data {
 	char platform_name[DAI_NAME_SIZE];
 	unsigned int clk_frequency;
 	bool is_codec_master;
-};
+}
 
 struct imx_priv {
 	int hp_gpio;
