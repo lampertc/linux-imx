@@ -41,7 +41,7 @@
 #include "wm8962.h"
 
 #define WM8962_NUM_SUPPLIES 8
-static const char *wm8962_supply_names[WM8962_NUM_SUPPLIES = {
+static const char *wm8962_supply_names[WM8962_NUM_SUPPLIES] = {
 	"DCVDD",
 	"DBVDD",
 	"AVDD",
