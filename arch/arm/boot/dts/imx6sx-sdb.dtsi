@@ -518,7 +518,7 @@
 		SPKVDD1-supply = <&reg_psu_5v>;
 		SPKVDD2-supply = <&reg_psu_5v>;
 		amic-mono;
-	};
+	}
 };
 
 &lcdif1 {
