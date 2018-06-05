@@ -215,7 +215,8 @@ snd-soc-wm9713-objs := wm9713.o
 snd-soc-wm-hubs-objs := wm_hubs.o
 
 
-snd-soc-adau1761-objs := adau1761.o adau17x1.o adau-utils.o sigmadsp-regmap.o 
+snd-soc-adau1761-objs := adau1761.o adau17x1.o adau-utils.o sigmadsp.o 
+# sigmadsp-regmap.o 
 snd-soc-adau17x1-objs := adau17x1.o adau-utils.o sigmadsp-regmap.o
 snd-soc-adau1761-i2c-objs := adau1761-i2c.o
 
