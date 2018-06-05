@@ -408,7 +408,7 @@
 			0x0000 /* 5:Default */
 		>;
 		amic-mono;
-       };
+       }
 
 	mma8451@1c {
 		compatible = "fsl,mma8451";
