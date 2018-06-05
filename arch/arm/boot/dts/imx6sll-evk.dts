@@ -358,7 +358,7 @@
 		SPKVDD1-supply = <&reg_aud4v>;
 		SPKVDD2-supply = <&reg_aud4v>;
 		amic-mono;
-	};
+	}
 };
 
 &gpc {
