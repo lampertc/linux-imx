@@ -195,8 +195,8 @@ snd-soc-wm8940-objs := wm8940.o
 snd-soc-wm8955-objs := wm8955.o
 snd-soc-wm8960-objs := wm8960.o
 snd-soc-wm8961-objs := wm8961.o
-snd-soc-wm8962-objs := adau1761.o adau17x1.o adau-utils.o sigmadsp-regmap.o
-# wm8962.o
+snd-soc-wm8962-objs := wm8962.o
+# adau1761.o adau17x1.o adau-utils.o sigmadsp-regmap.o
 snd-soc-wm8971-objs := wm8971.o
 snd-soc-wm8974-objs := wm8974.o
 snd-soc-wm8978-objs := wm8978.o
