@@ -13,7 +13,7 @@
 #include <linux/regmap.h>
 #include <sound/soc.h>
 
-#include "adau1761.h"
+#include "adau1761.h
 
 static int adau1761_i2c_probe(struct i2c_client *client,
 	const struct i2c_device_id *id)
