@@ -912,6 +912,8 @@ int adau17x1_resume(struct snd_soc_codec *codec)
 }
 EXPORT_SYMBOL_GPL(adau17x1_resume);
 
+bool g_chet = false;
+
 int adau17x1_probe(struct device *dev, struct regmap *regmap,
 	enum adau17x1_type type, void (*switch_mode)(struct device *dev),
 	const char *firmware_name)
@@ -930,6 +932,7 @@ int adau17x1_probe(struct device *dev, struct regmap *regmap,
 		return -ENOMEM;
    }
 
+   g_chet = true;
 	adau->mclk = devm_clk_get(dev, "mclk");
 	if (IS_ERR(adau->mclk)) {
       printk(KERN_WARNING "************************************************************17x1 3************************************************\n");
@@ -960,6 +963,7 @@ int adau17x1_probe(struct device *dev, struct regmap *regmap,
 			return ret;
       }
 	}
+   g_chet = false;
 
 	adau->regmap = regmap;
 	adau->switch_mode = switch_mode;

@@ -35,12 +35,15 @@ void at32_clk_register(struct clk *clk)
 	list_add_tail(&clk->list, &at32_clock_list);
 	spin_unlock(&clk_list_lock);
 }
-
+extern bool g_chet;
 static struct clk *__clk_get(struct device *dev, const char *id)
 {
 	struct clk *clk;
 
 	list_for_each_entry(clk, &at32_clock_list, list) {
+if(g_chet) {
+printk(KERN_WARNING "g_chet clk_get %s\n",clk->name);
+}
 		if (clk->dev == dev && strcmp(id, clk->name) == 0) {
 			return clk;
 		}
