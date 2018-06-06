@@ -792,14 +792,19 @@ int adau1761_probe(struct device *dev, struct regmap *regmap,
 	if (type == ADAU1361) {
 		dai_drv = &adau1361_dai_driver;
 		firmware_name = NULL;
+      printk(KERN_WARNING "************************************************************adau print 8a************************************************\n");
 	} else {
 		dai_drv = &adau1761_dai_driver;
 		firmware_name = ADAU1761_FIRMWARE;
+      printk(KERN_WARNING "************************************************************adau print 8b************************************************\n");
 	}
 
 	ret = adau17x1_probe(dev, regmap, type, switch_mode, firmware_name);
-	if (ret)
+	if (ret) {
+      printk(KERN_WARNING "************************************************************adau print 8c************************************************\n");
+
 		return ret;
+   }
 
 	/* Enable cache only mode as we could miss writes before bias level
 	 * reaches standby and the core clock is enabled */
