@@ -19,14 +19,18 @@ struct clk *devm_clk_get(struct device *dev, const char *id)
 	struct clk **ptr, *clk;
 
 	ptr = devres_alloc(devm_clk_release, sizeof(*ptr), GFP_KERNEL);
-	if (!ptr)
+	if (!ptr) {
+      printk(KERN_WARNING "************************************************************devm_clk_get 1************************************************\n");
 		return ERR_PTR(-ENOMEM);
+   }
 
 	clk = clk_get(dev, id);
 	if (!IS_ERR(clk)) {
+      printk(KERN_WARNING "************************************************************devm_clk_get 2************************************************\n");
 		*ptr = clk;
 		devres_add(dev, ptr);
 	} else {
+      printk(KERN_WARNING "************************************************************devm_clk_get 3************************************************\n");
 		devres_free(ptr);
 	}
 
