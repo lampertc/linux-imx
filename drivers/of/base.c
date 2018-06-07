@@ -1464,6 +1464,7 @@ EXPORT_SYMBOL_GPL(of_property_read_string);
  * This function searches a string list property and returns the index
  * of a specific string value.
  */
+extern bool g_chet
 int of_property_match_string(const struct device_node *np, const char *propname,
 			     const char *string)
 {
@@ -1485,6 +1486,9 @@ int of_property_match_string(const struct device_node *np, const char *propname,
 		if (p + l > end)
 			return -EILSEQ;
 		pr_debug("comparing %s with %s\n", string, p);
+if(g_chet) {
+   printk(KERN_WARNING "of_property_match_string - comparing %s with %s\n", string, p);
+}
 		if (strcmp(string, p) == 0)
 			return i; /* Found it; return index */
 	}
