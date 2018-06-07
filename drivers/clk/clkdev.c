@@ -24,6 +24,8 @@
 
 #include "clk.h"
 
+extern bool g_chet;
+
 
 static LIST_HEAD(clocks);
 static DEFINE_MUTEX(clocks_mutex);
@@ -36,13 +38,25 @@ static struct clk *__of_clk_get(struct device_node *np, int index,
 	struct clk *clk;
 	int rc;
 
-	if (index < 0)
+if(g_chet) {
+   printk(KERN_WARNING "************************************************************__of_clk_get 1************************************************\n");
+}
+
+	if (index < 0) {
+if(g_chet) {
+   printk(KERN_WARNING "************************************************************__of_clk_get 2************************************************\n");
+}
 		return ERR_PTR(-EINVAL);
+}
 
 	rc = of_parse_phandle_with_args(np, "clocks", "#clock-cells", index,
 					&clkspec);
-	if (rc)
+	if (rc) {
+if(g_chet) {
+   printk(KERN_WARNING "************************************************************__of_clk_get 3************************************************\n");
+}
 		return ERR_PTR(rc);
+}
 
 	clk = __of_clk_get_from_provider(&clkspec, dev_id, con_id);
 	of_node_put(clkspec.np);
@@ -50,7 +64,6 @@ static struct clk *__of_clk_get(struct device_node *np, int index,
 	return clk;
 }
 
-extern bool g_chet;
 
 struct clk *of_clk_get(struct device_node *np, int index)
 {
