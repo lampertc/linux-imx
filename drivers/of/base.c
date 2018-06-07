@@ -1483,7 +1483,7 @@ if(g_chet) {
    printk(KERN_WARNING "of_property_match_string propname = %s string = %s\n",propname, string);
 }
 
-*prop = of_find_property(np, propname, NULL);
+ prop = of_find_property(np, propname, NULL);
 	size_t l;
 	int i;
 	const char *p, *end;
