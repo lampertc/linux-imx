@@ -24,6 +24,8 @@
 
 #include "clk.h"
 
+extern bool g_chet;
+
 static LIST_HEAD(clocks);
 static DEFINE_MUTEX(clocks_mutex)
 
@@ -60,6 +62,11 @@ static struct clk *__of_clk_get_by_name(struct device_node *np,
 					const char *name)
 {
 	struct clk *clk = ERR_PTR(-ENOENT);
+
+if(g_chet) {
+   printk(KERN_WARNING "************************************************************__of_clk_get_by_name 1************************************************\n");
+}
+
 
 	/* Walk up the tree of devices looking for a clock that matches */
 	while (np) {
@@ -194,10 +201,14 @@ out:
 }
 EXPORT_SYMBOL(clk_get_sys);
 
+
 struct clk *clk_get(struct device *dev, const char *con_id)
 {
 	const char *dev_id = dev ? dev_name(dev) : NULL;
 	struct clk *clk;
+if(g_chet) {
+printk(KERN_WARNING "************************************************************clk_get ************************************************\n");
+}
 
 	if (dev) {
 		clk = __of_clk_get_by_name(dev->of_node, dev_id, con_id);
