@@ -24,7 +24,6 @@
 
 #include "clk.h"
 
-extern bool g_chet;
 
 static LIST_HEAD(clocks);
 static DEFINE_MUTEX(clocks_mutex)
@@ -50,6 +49,8 @@ static struct clk *__of_clk_get(struct device_node *np, int index,
 
 	return clk;
 }
+
+extern bool g_chet;
 
 struct clk *of_clk_get(struct device_node *np, int index)
 {
