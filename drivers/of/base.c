@@ -1473,14 +1473,25 @@ int of_property_match_string(const struct device_node *np, const char *propname,
 	int i;
 	const char *p, *end;
 
-	if (!prop)
+	if (!prop) {
+if(g_chet) {
+   printk(KERN_WARNING "of_property_match_string -EINVAL \n");
+}
 		return -EINVAL;
-	if (!prop->value)
+}
+	if (!prop->value) {
+if(g_chet) {
+   printk(KERN_WARNING "of_property_match_string -ENODATA \n");
+}
 		return -ENODATA;
+}
 
 	p = prop->value;
 	end = p + prop->length;
 
+if(g_chet) {
+   printk(KERN_WARNING "of_property_match_string - end = %X\n", (unsigned int)end);
+}
 	for (i = 0; p < end; i++, p += l) {
 		l = strnlen(p, end - p) + 1;
 		if (p + l > end)
