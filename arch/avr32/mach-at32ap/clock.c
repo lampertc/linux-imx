@@ -40,7 +40,7 @@ static struct clk *__clk_get(struct device *dev, const char *id)
 {
 	struct clk *clk;
 if(g_chet) {
-printk(KERN_WARNING "************************************************************__clk_get 1************************************************\n");
+printk(KERN_WARNING "************************************************************__clk_get 1************************************************\n")
 }
 
 	list_for_each_entry(clk, &at32_clock_list, list) {
