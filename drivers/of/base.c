@@ -1650,8 +1650,6 @@ int of_phandle_iterator_args(struct of_phandle_iterator *it,
 	return count;
 }
 
-extern bool g_chet
-
 static int __of_parse_phandle_with_args(const struct device_node *np,
 					const char *list_name,
 					const char *cells_name,

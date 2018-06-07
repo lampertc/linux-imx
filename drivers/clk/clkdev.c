@@ -91,8 +91,15 @@ if(g_chet) {
 		 * "clock-names" property.  If it cannot be found, then
 		 * index will be an error code, and of_clk_get() will fail.
 		 */
-		if (name)
+		if (name) {
+if(g_chet) {
+   printk(KERN_WARNING "__of_clk_get_by_name name = %s\n", name);
+}
 			index = of_property_match_string(np, "clock-names", name);
+}
+if(g_chet) {
+   printk(KERN_WARNING "__of_clk_get_by_name index = %d\n", index);
+}
 		clk = __of_clk_get(np, index, dev_id, name);
 		if (!IS_ERR(clk)) {
 			break;
