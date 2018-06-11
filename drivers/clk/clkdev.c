@@ -102,6 +102,9 @@ if(g_chet) {
 }
 		clk = __of_clk_get(np, index, dev_id, name);
 		if (!IS_ERR(clk)) {
+if(g_chet) {
+   printk(KERN_WARNING "clkdev.c !IS_ERR(clk) \n", index);
+}
 			break;
 		} else if (name && index >= 0) {
 			if (PTR_ERR(clk) != -EPROBE_DEFER)
@@ -120,6 +123,9 @@ if(g_chet) {
 			break;
 	}
 
+if(g_chet) {
+   printk(KERN_WARNING "clkdev.c returning clk \n", index);
+}
 	return clk;
 }
 
