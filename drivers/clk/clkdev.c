@@ -78,7 +78,7 @@ static struct clk *__of_clk_get_by_name(struct device_node *np,
 	struct clk *clk = ERR_PTR(-ENOENT);
 
 if(g_chet) {
-   printk(KERN_WARNING "************************************************************__of_clk_get_by_name 1************************************************\n");
+   printk(KERN_WARNING "clkdev.c __of_clk_get_by_name dev_id = %s name = %s\n", dev_id, name);
 }
 
 
@@ -232,6 +232,9 @@ printk(KERN_WARNING "***********************************************************
 }
 
 	if (dev) {
+if(g_chet) {
+printk(KERN_WARNING "clkdev.c clk_get dev_id = %s\n", dev_id);
+}
 		clk = __of_clk_get_by_name(dev->of_node, dev_id, con_id);
 		if (!IS_ERR(clk) || PTR_ERR(clk) == -EPROBE_DEFER)
 			return clk;
