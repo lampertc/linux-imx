@@ -482,8 +482,10 @@ static int sigmadsp_firmware_load(struct sigmadsp *sigmadsp, const char *name)
 	u32 crc;
 
 	/* first load the blob */
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 1\n");
 	ret = request_firmware(&fw, name, sigmadsp->dev);
 	if (ret) {
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 2\n");
 		pr_debug("%s: request_firmware() failed with %i\n", __func__, ret);
 		goto done;
 	}
@@ -498,12 +500,14 @@ static int sigmadsp_firmware_load(struct sigmadsp *sigmadsp, const char *name)
 	 * overflows later in the loading process.
 	 */
 	if (fw->size < sizeof(*ssfw_head) || fw->size >= 0x4000000) {
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 3\n");
 		dev_err(sigmadsp->dev, "Failed to load firmware: Invalid size\n");
 		goto done;
 	}
 
 	ssfw_head = (void *)fw->data;
 	if (memcmp(ssfw_head->magic, SIGMA_MAGIC, ARRAY_SIZE(ssfw_head->magic))) {
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 4\n");
 		dev_err(sigmadsp->dev, "Failed to load firmware: Invalid magic\n");
 		goto done;
 	}
@@ -512,6 +516,7 @@ static int sigmadsp_firmware_load(struct sigmadsp *sigmadsp, const char *name)
 			fw->size - sizeof(*ssfw_head));
 	pr_debug("%s: crc=%x\n", __func__, crc);
 	if (crc != le32_to_cpu(ssfw_head->crc)) {
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 5\n");
 		dev_err(sigmadsp->dev, "Failed to load firmware: Wrong crc checksum: expected %x got %x\n",
 			le32_to_cpu(ssfw_head->crc), crc);
 		goto done;
@@ -519,12 +524,17 @@ static int sigmadsp_firmware_load(struct sigmadsp *sigmadsp, const char *name)
 
 	switch (ssfw_head->version) {
 	case 1:
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 6\n");
+
 		ret = sigmadsp_fw_load_v1(sigmadsp, fw);
 		break;
 	case 2:
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 7\n");
 		ret = sigmadsp_fw_load_v2(sigmadsp, fw);
 		break;
 	default:
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 8\n");
+
 		dev_err(sigmadsp->dev,
 			"Failed to load firmware: Invalid version %d. Supported firmware versions: 1, 2\n",
 			ssfw_head->version);
@@ -532,12 +542,14 @@ static int sigmadsp_firmware_load(struct sigmadsp *sigmadsp, const char *name)
 		break;
 	}
 
-	if (ret)
+	if (ret) {
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 9\n");
 		sigmadsp_firmware_release(sigmadsp);
+}
 
 done:
 	release_firmware(fw);
-
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 10\n");
 	return ret;
 }
 
@@ -547,6 +559,7 @@ static int sigmadsp_init(struct sigmadsp *sigmadsp, struct device *dev,
 	sigmadsp->ops = ops;
 	sigmadsp->dev = dev;
 
+printk(KERN_WARNING "sigmadsp.c sigmadsp_init 1\n");
 	INIT_LIST_HEAD(&sigmadsp->ctrl_list);
 	INIT_LIST_HEAD(&sigmadsp->data_list);
 	mutex_init(&sigmadsp->lock);
@@ -570,19 +583,24 @@ struct sigmadsp *devm_sigmadsp_init(struct device *dev,
 	struct sigmadsp *sigmadsp;
 	int ret;
 
+printk(KERN_WARNING "sigmadsp.c devm_sigmadsp_init 1\n");
 	sigmadsp = devres_alloc(devm_sigmadsp_release, sizeof(*sigmadsp),
 		GFP_KERNEL);
-	if (!sigmadsp)
+	if (!sigmadsp) {
+printk(KERN_WARNING "sigmadsp.c devm_sigmadsp_init 2\n");
 		return ERR_PTR(-ENOMEM);
+}
 
 	ret = sigmadsp_init(sigmadsp, dev, ops, firmware_name);
 	if (ret) {
+printk(KERN_WARNING "sigmadsp.c devm_sigmadsp_init 2.5\n");
 		devres_free(sigmadsp);
 		return ERR_PTR(ret);
 	}
 
 	devres_add(dev, sigmadsp);
 
+printk(KERN_WARNING "sigmadsp.c devm_sigmadsp_init 3\n");
 	return sigmadsp;
 }
 EXPORT_SYMBOL_GPL(devm_sigmadsp_init);
