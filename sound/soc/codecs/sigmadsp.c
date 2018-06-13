@@ -312,12 +312,15 @@ static int sigmadsp_fw_load_v2(struct sigmadsp *sigmadsp,
 	unsigned int length, pos;
 	int ret;
 
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 1\n");
 	/*
 	 * Make sure that there is at least one chunk to avoid integer
 	 * underflows later on. Empty firmware is still valid though.
 	 */
-	if (fw->size < sizeof(*chunk) + sizeof(struct sigma_firmware_header))
+	if (fw->size < sizeof(*chunk) + sizeof(struct sigma_firmware_header)) {
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 2\n");
 		return 0;
+}
 
 	pos = sizeof(struct sigma_firmware_header);
 
@@ -326,28 +329,35 @@ static int sigmadsp_fw_load_v2(struct sigmadsp *sigmadsp,
 
 		length = le32_to_cpu(chunk->length);
 
-		if (length > fw->size - pos || length < sizeof(*chunk))
+		if (length > fw->size - pos || length < sizeof(*chunk)) {
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 3\n");
 			return -EINVAL;
+}
 
 		switch (le32_to_cpu(chunk->tag)) {
 		case SIGMA_FW_CHUNK_TYPE_DATA:
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 4\n");
 			ret = sigma_fw_load_data(sigmadsp, chunk, length);
 			break;
 		case SIGMA_FW_CHUNK_TYPE_CONTROL:
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 5\n");
 			ret = sigma_fw_load_control(sigmadsp, chunk, length);
 			break;
 		case SIGMA_FW_CHUNK_TYPE_SAMPLERATES:
 			ret = sigma_fw_load_samplerates(sigmadsp, chunk, length);
 			break;
 		default:
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 6\n");
 			dev_warn(sigmadsp->dev, "Unknown chunk type: %d\n",
 				chunk->tag);
 			ret = 0;
 			break;
 		}
 
-		if (ret)
+		if (ret) {
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 7\n");
 			return ret;
+}
 
 		/*
 		 * This can not overflow since if length is larger than the
