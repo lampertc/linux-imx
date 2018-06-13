@@ -166,7 +166,7 @@
 		};
 	};
 
-
+/*
 	sound {
 		compatible = "fsl,imx6q-sabresd-wm8962",
 			   "fsl,imx-audio-wm8962";
@@ -193,9 +193,9 @@
 		hp-det-gpios = <&gpio7 8 1>;
 		mic-det-gpios = <&gpio1 9 1>;
 	};
+*/
 
-
-    asound {
+    sound {
         compatible = "adi,adau1761";
         model = "adau1761-audio";
         audio-cpu = <&esai>;
