@@ -206,26 +206,35 @@ static int sigma_fw_load_control(struct sigmadsp *sigmadsp,
 	char *name;
 	int ret;
 
-	if (length <= sizeof(*ctrl_chunk))
+	if (length <= sizeof(*ctrl_chunk)) {
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_control 1\n");
 		return -EINVAL;
+}
 
 	ctrl_chunk = (const struct sigma_fw_chunk_control *)chunk;
 
 	name_len = length - sizeof(*ctrl_chunk);
-	if (name_len >= SNDRV_CTL_ELEM_ID_NAME_MAXLEN)
+	if (name_len >= SNDRV_CTL_ELEM_ID_NAME_MAXLEN) {
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_control 2\n");
 		name_len = SNDRV_CTL_ELEM_ID_NAME_MAXLEN - 1;
+}
 
 	/* Make sure there are no non-displayable characaters in the string */
-	if (!sigma_fw_validate_control_name(ctrl_chunk->name, name_len))
+	if (!sigma_fw_validate_control_name(ctrl_chunk->name, name_len)) {
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_control 3\n");
 		return -EINVAL;
+}
 
 	num_bytes = le16_to_cpu(ctrl_chunk->num_bytes);
 	ctrl = kzalloc(sizeof(*ctrl) + num_bytes, GFP_KERNEL);
-	if (!ctrl)
+	if (!ctrl) {
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_control 4\n");
 		return -ENOMEM;
+}
 
 	name = kzalloc(name_len + 1, GFP_KERNEL);
 	if (!name) {
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_control 5\n");
 		ret = -ENOMEM;
 		goto err_free_ctrl;
 	}
@@ -238,6 +247,7 @@ static int sigma_fw_load_control(struct sigmadsp *sigmadsp,
 	ctrl->samplerates = le32_to_cpu(chunk->samplerates);
 
 	list_add_tail(&ctrl->head, &sigmadsp->ctrl_list);
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_control 6\n");
 
 	return 0;
 
@@ -253,16 +263,21 @@ static int sigma_fw_load_data(struct sigmadsp *sigmadsp,
 	const struct sigma_fw_chunk_data *data_chunk;
 	struct sigmadsp_data *data;
 
-	if (length <= sizeof(*data_chunk))
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_data 1\n");
+	if (length <= sizeof(*data_chunk)) {
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_data 2\n");
 		return -EINVAL;
+}
 
 	data_chunk = (struct sigma_fw_chunk_data *)chunk;
 
 	length -= sizeof(*data_chunk);
 
 	data = kzalloc(sizeof(*data) + length, GFP_KERNEL);
-	if (!data)
+	if (!data) {
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_data 3\n");
 		return -ENOMEM;
+}
 
 	data->addr = le16_to_cpu(data_chunk->addr);
 	data->length = length;
