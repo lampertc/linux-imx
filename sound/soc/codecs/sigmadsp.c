@@ -282,6 +282,7 @@ printk(KERN_WARNING "sigmadsp.c sigma_fw_load_data 3\n");
 	data->addr = le16_to_cpu(data_chunk->addr);
 	data->length = length;
 	data->samplerates = le32_to_cpu(chunk->samplerates);
+printk(KERN_WARNING "sigmadsp.c sigma_fw_load_data addr = %X length = %X samplerates = %X\n", data->addr, data->length, data->samplerates);
 	memcpy(data->data, data_chunk->data, length);
 	list_add_tail(&data->head, &sigmadsp->data_list);
 
@@ -351,11 +352,11 @@ printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 3\n");
 
 		switch (le32_to_cpu(chunk->tag)) {
 		case SIGMA_FW_CHUNK_TYPE_DATA:
-printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 4\n");
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 4 length = %X\n", length);
 			ret = sigma_fw_load_data(sigmadsp, chunk, length);
 			break;
 		case SIGMA_FW_CHUNK_TYPE_CONTROL:
-printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 5\n");
+printk(KERN_WARNING "sigmadsp.c sigmadsp_fw_load_v2 5 length = %X\n", length);
 			ret = sigma_fw_load_control(sigmadsp, chunk, length);
 			break;
 		case SIGMA_FW_CHUNK_TYPE_SAMPLERATES:
@@ -507,7 +508,7 @@ static int sigmadsp_firmware_load(struct sigmadsp *sigmadsp, const char *name)
 	u32 crc;
 
 	/* first load the blob */
-printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 1\n");
+printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 1 name = %s\n", name);
 	ret = request_firmware(&fw, name, sigmadsp->dev);
 	if (ret) {
 printk(KERN_WARNING "sigmadsp.c sigmadsp_firmware_load 2\n");
