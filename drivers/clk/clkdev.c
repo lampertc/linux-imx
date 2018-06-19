@@ -24,9 +24,6 @@
 
 #include "clk.h"
 
-extern bool g_chet;
-
-
 static LIST_HEAD(clocks);
 static DEFINE_MUTEX(clocks_mutex);
 
@@ -38,32 +35,19 @@ static struct clk *__of_clk_get(struct device_node *np, int index,
 	struct clk *clk;
 	int rc;
 
-if(g_chet) {
-   printk(KERN_WARNING "************************************************************__of_clk_get 1************************************************\n");
-}
-
-	if (index < 0) {
-if(g_chet) {
-   printk(KERN_WARNING "************************************************************__of_clk_get 2************************************************\n");
-}
+	if (index < 0)
 		return ERR_PTR(-EINVAL);
-}
 
 	rc = of_parse_phandle_with_args(np, "clocks", "#clock-cells", index,
 					&clkspec);
-	if (rc) {
-if(g_chet) {
-   printk(KERN_WARNING "************************************************************__of_clk_get 3************************************************\n");
-}
+	if (rc)
 		return ERR_PTR(rc);
-}
 
 	clk = __of_clk_get_from_provider(&clkspec, dev_id, con_id);
 	of_node_put(clkspec.np);
 
 	return clk;
 }
-
 
 struct clk *of_clk_get(struct device_node *np, int index)
 {
@@ -77,11 +61,6 @@ static struct clk *__of_clk_get_by_name(struct device_node *np,
 {
 	struct clk *clk = ERR_PTR(-ENOENT);
 
-if(g_chet) {
-   printk(KERN_WARNING "clkdev.c __of_clk_get_by_name dev_id = %s name = %s\n", dev_id, name);
-}
-
-
 	/* Walk up the tree of devices looking for a clock that matches */
 	while (np) {
 		int index = 0;
@@ -91,20 +70,10 @@ if(g_chet) {
 		 * "clock-names" property.  If it cannot be found, then
 		 * index will be an error code, and of_clk_get() will fail.
 		 */
-		if (name) {
-if(g_chet) {
-   printk(KERN_WARNING "__of_clk_get_by_name name = %s\n", name);
-}
+		if (name)
 			index = of_property_match_string(np, "clock-names", name);
-}
-if(g_chet) {
-   printk(KERN_WARNING "__of_clk_get_by_name index = %d\n", index);
-}
 		clk = __of_clk_get(np, index, dev_id, name);
 		if (!IS_ERR(clk)) {
-if(g_chet) {
-   printk(KERN_WARNING "clkdev.c !IS_ERR(clk)\n");
-}
 			break;
 		} else if (name && index >= 0) {
 			if (PTR_ERR(clk) != -EPROBE_DEFER)
@@ -123,9 +92,6 @@ if(g_chet) {
 			break;
 	}
 
-if(g_chet) {
-   printk(KERN_WARNING "clkdev.c returning clk\n");
-}
 	return clk;
 }
 
@@ -228,19 +194,12 @@ out:
 }
 EXPORT_SYMBOL(clk_get_sys);
 
-
 struct clk *clk_get(struct device *dev, const char *con_id)
 {
 	const char *dev_id = dev ? dev_name(dev) : NULL;
 	struct clk *clk;
-if(g_chet) {
-printk(KERN_WARNING "************************************************************clk_get ************************************************\n");
-}
 
 	if (dev) {
-if(g_chet) {
-printk(KERN_WARNING "clkdev.c clk_get dev_id = %s\n", dev_id);
-}
 		clk = __of_clk_get_by_name(dev->of_node, dev_id, con_id);
 		if (!IS_ERR(clk) || PTR_ERR(clk) == -EPROBE_DEFER)
 			return clk;

@@ -23,7 +23,6 @@ config SND_SOC_ALL_CODECS
 	select SND_SOC_AD1980 if SND_SOC_AC97_BUS
 	select SND_SOC_AD73311
 	select SND_SOC_ADAU1373 if I2C
-	select SND_SOC_ADAU1761 if I2C && INPUT
 	select SND_SOC_ADAU1761_I2C if I2C
 	select SND_SOC_ADAU1761_SPI if SPI
 	select SND_SOC_ADAU1781_I2C if I2C
@@ -277,8 +276,8 @@ config SND_SOC_AD1980
 config SND_SOC_AD73311
 	tristate
 
-#config SND_SOC_ADAU_UTILS
-#	tristate
+config SND_SOC_ADAU_UTILS
+	tristate
 
 config SND_SOC_ADAU1373
 	tristate
@@ -289,15 +288,14 @@ config SND_SOC_ADAU1701
 	depends on I2C
 	select SND_SOC_SIGMADSP_I2C
 
-#config SND_SOC_ADAU17X1
-#	tristate
-#	select SND_SOC_SIGMADSP_REGMAP
-#	select SND_SOC_ADAU_UTILS
-
+config SND_SOC_ADAU17X1
+	tristate
+	select SND_SOC_SIGMADSP_REGMAP
+	select SND_SOC_ADAU_UTILS
 
 config SND_SOC_ADAU1761
-	tristate "ADAU1761 CODEC"
-	depends on I2C && INPUT
+	tristate
+	select SND_SOC_ADAU17X1
 
 config SND_SOC_ADAU1761_I2C
 	tristate
@@ -744,9 +742,9 @@ config SND_SOC_SIGMADSP_I2C
 	tristate
 	select SND_SOC_SIGMADSP
 
-#config SND_SOC_SIGMADSP_REGMAP
-#	tristate
-#	select SND_SOC_SIGMADSP
+config SND_SOC_SIGMADSP_REGMAP
+	tristate
+	select SND_SOC_SIGMADSP
 
 config SND_SOC_SIRF_AUDIO_CODEC
 	tristate "SiRF SoC internal audio codec"

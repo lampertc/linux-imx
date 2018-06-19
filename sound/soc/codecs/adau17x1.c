@@ -912,8 +912,6 @@ int adau17x1_resume(struct snd_soc_codec *codec)
 }
 EXPORT_SYMBOL_GPL(adau17x1_resume);
 
-bool g_chet = false;
-
 int adau17x1_probe(struct device *dev, struct regmap *regmap,
 	enum adau17x1_type type, void (*switch_mode)(struct device *dev),
 	const char *firmware_name)
@@ -921,29 +919,20 @@ int adau17x1_probe(struct device *dev, struct regmap *regmap,
 	struct adau *adau;
 	int ret;
 
-	if (IS_ERR(regmap)) {
-      printk(KERN_WARNING "************************************************************17x1 1************************************************\n");
-   	return PTR_ERR(regmap);
-   }
+	if (IS_ERR(regmap))
+		return PTR_ERR(regmap);
 
 	adau = devm_kzalloc(dev, sizeof(*adau), GFP_KERNEL);
-	if (!adau) {
-      printk(KERN_WARNING "************************************************************17x1 2************************************************\n");
+	if (!adau)
 		return -ENOMEM;
-   }
 
-   g_chet = true;
 	adau->mclk = devm_clk_get(dev, "mclk");
 	if (IS_ERR(adau->mclk)) {
-      printk(KERN_WARNING "************************************************************17x1 3************************************************\n");
-		if (PTR_ERR(adau->mclk) != -ENOENT) {
-         printk(KERN_WARNING "************************************************************17x1 4************************************************\n");
+		if (PTR_ERR(adau->mclk) != -ENOENT)
 			return PTR_ERR(adau->mclk);
-      }
 		/* Clock is optional (for the driver) */
 		adau->mclk = NULL;
 	} else if (adau->mclk) {
-      printk(KERN_WARNING "************************************************************17x1 5************************************************\n");
 		adau->clk_src = ADAU17X1_CLK_SRC_PLL_AUTO;
 
 		/*
@@ -953,17 +942,13 @@ int adau17x1_probe(struct device *dev, struct regmap *regmap,
 		 */
 		ret = adau_calc_pll_cfg(clk_get_rate(adau->mclk), 48000 * 1024,
 				adau->pll_regs);
-		if (ret < 0) {
-         printk(KERN_WARNING "************************************************************17x1 6************************************************\n");
-   		return ret;
-      }
-		ret = clk_prepare_enable(adau->mclk);
-		if (ret) {
-         printk(KERN_WARNING "************************************************************17x1 7************************************************\n");
+		if (ret < 0)
 			return ret;
-      }
+
+		ret = clk_prepare_enable(adau->mclk);
+		if (ret)
+			return ret;
 	}
-   g_chet = false;
 
 	adau->regmap = regmap;
 	adau->switch_mode = switch_mode;
@@ -972,22 +957,17 @@ int adau17x1_probe(struct device *dev, struct regmap *regmap,
 	dev_set_drvdata(dev, adau);
 
 	if (firmware_name) {
-      printk(KERN_WARNING "************************************************************17x1 8************************************************\n");
-
 		adau->sigmadsp = devm_sigmadsp_init_regmap(dev, regmap, NULL,
 			firmware_name);
 		if (IS_ERR(adau->sigmadsp)) {
-         printk(KERN_WARNING "************************************************************17x1 9************************************************\n");
 			dev_warn(dev, "Could not find firmware file: %ld\n",
 				PTR_ERR(adau->sigmadsp));
 			adau->sigmadsp = NULL;
 		}
 	}
 
-	if (switch_mode) {
-      printk(KERN_WARNING "************************************************************17x1 10************************************************\n");
+	if (switch_mode)
 		switch_mode(dev);
-   }
 
 	return 0;
 }

@@ -10,6 +10,9 @@ snd-soc-ad73311-objs := ad73311.o
 snd-soc-adau-utils-objs := adau-utils.o
 snd-soc-adau1373-objs := adau1373.o
 snd-soc-adau1701-objs := adau1701.o
+snd-soc-adau17x1-objs := adau17x1.o
+snd-soc-adau1761-objs := adau1761.o
+snd-soc-adau1761-i2c-objs := adau1761-i2c.o
 snd-soc-adau1761-spi-objs := adau1761-spi.o
 snd-soc-adau1781-objs := adau1781.o
 snd-soc-adau1781-i2c-objs := adau1781-i2c.o
@@ -193,7 +196,6 @@ snd-soc-wm8955-objs := wm8955.o
 snd-soc-wm8960-objs := wm8960.o
 snd-soc-wm8961-objs := wm8961.o
 snd-soc-wm8962-objs := wm8962.o
-#   
 snd-soc-wm8971-objs := wm8971.o
 snd-soc-wm8974-objs := wm8974.o
 snd-soc-wm8978-objs := wm8978.o
@@ -214,14 +216,6 @@ snd-soc-wm9712-objs := wm9712.o
 snd-soc-wm9713-objs := wm9713.o
 snd-soc-wm-hubs-objs := wm_hubs.o
 
-
-snd-soc-adau1761-objs := adau1761.o adau1761-i2c.o adau17x1.o adau-utils.o sigmadsp.o sigmadsp-regmap.o 
-# 
-snd-soc-adau17x1-objs := adau17x1.o adau-utils.o sigmadsp-regmap.o
-snd-soc-adau1761-i2c-objs := adau1761-i2c.o
-
-
-
 # Amp
 snd-soc-max9877-objs := max9877.o
 snd-soc-max98504-objs := max98504.o
@@ -239,17 +233,17 @@ obj-$(CONFIG_SND_SOC_AD1980)	+= snd-soc-ad1980.o
 obj-$(CONFIG_SND_SOC_AD73311) += snd-soc-ad73311.o
 obj-$(CONFIG_SND_SOC_ADAU_UTILS)	+= snd-soc-adau-utils.o
 obj-$(CONFIG_SND_SOC_ADAU1373)	+= snd-soc-adau1373.o
-obj-$(CONFIG_SND_SOC_ADAU1701)		+= adau1701.o
+obj-$(CONFIG_SND_SOC_ADAU1701)		+= snd-soc-adau1701.o
 obj-$(CONFIG_SND_SOC_ADAU17X1)		+= snd-soc-adau17x1.o
 obj-$(CONFIG_SND_SOC_ADAU1761)		+= snd-soc-adau1761.o
 obj-$(CONFIG_SND_SOC_ADAU1761_I2C)	+= snd-soc-adau1761-i2c.o
-obj-$(CONFIG_SND_SOC_ADAU1761_SPI)	+= adau1761-spi.o
-obj-$(CONFIG_SND_SOC_ADAU1781)		+= adau1781.o
-obj-$(CONFIG_SND_SOC_ADAU1781_I2C)	+= adau1781-i2c.o
-obj-$(CONFIG_SND_SOC_ADAU1781_SPI)	+= adau1781-spi.o
-obj-$(CONFIG_SND_SOC_ADAU1977)		+= adau1977.o
-obj-$(CONFIG_SND_SOC_ADAU1977_SPI)	+= adau1977-spi.o
-obj-$(CONFIG_SND_SOC_ADAU1977_I2C)	+= adau1977-i2c.o
+obj-$(CONFIG_SND_SOC_ADAU1761_SPI)	+= snd-soc-adau1761-spi.o
+obj-$(CONFIG_SND_SOC_ADAU1781)		+= snd-soc-adau1781.o
+obj-$(CONFIG_SND_SOC_ADAU1781_I2C)	+= snd-soc-adau1781-i2c.o
+obj-$(CONFIG_SND_SOC_ADAU1781_SPI)	+= snd-soc-adau1781-spi.o
+obj-$(CONFIG_SND_SOC_ADAU1977)		+= snd-soc-adau1977.o
+obj-$(CONFIG_SND_SOC_ADAU1977_SPI)	+= snd-soc-adau1977-spi.o
+obj-$(CONFIG_SND_SOC_ADAU1977_I2C)	+= snd-soc-adau1977-i2c.o
 obj-$(CONFIG_SND_SOC_ADAU7002)	+= snd-soc-adau7002.o
 obj-$(CONFIG_SND_SOC_ADAV80X)  += snd-soc-adav80x.o
 obj-$(CONFIG_SND_SOC_ADAV801)  += snd-soc-adav801.o

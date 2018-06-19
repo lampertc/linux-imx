@@ -41,20 +41,16 @@ struct sigmadsp *devm_sigmadsp_init_regmap(struct device *dev,
 	struct regmap *regmap, const struct sigmadsp_ops *ops,
 	const char *firmware_name)
 {
-   printk(KERN_WARNING "sigmadsp-regmap.c devm_sigmadsp_init_regmap 1\n");
 	struct sigmadsp *sigmadsp;
 
 	sigmadsp = devm_sigmadsp_init(dev, ops, firmware_name);
-	if (IS_ERR(sigmadsp)) {
-   printk(KERN_WARNING "sigmadsp-regmap.c devm_sigmadsp_init_regmap 2\n");
+	if (IS_ERR(sigmadsp))
 		return sigmadsp;
-}
 
 	sigmadsp->control_data = regmap;
 	sigmadsp->write = sigmadsp_write_regmap;
 	sigmadsp->read = sigmadsp_read_regmap;
 
-   printk(KERN_WARNING "sigmadsp-regmap.c devm_sigmadsp_init_regmap 3\n");
 	return sigmadsp;
 }
 EXPORT_SYMBOL_GPL(devm_sigmadsp_init_regmap);

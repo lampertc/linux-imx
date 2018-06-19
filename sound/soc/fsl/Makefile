@@ -63,8 +63,7 @@ snd-soc-imx-cs42888-objs := imx-cs42888.o
 snd-soc-imx-sgtl5000-objs := imx-sgtl5000.o
 snd-soc-imx-wm8958-objs := imx-wm8958.o
 snd-soc-imx-wm8960-objs := imx-wm8960.o
-snd-soc-imx-wm8962-objs := adau1761.o
-# imx-wm8962.o
+snd-soc-imx-wm8962-objs := imx-wm8962.o
 snd-soc-imx-xtor-objs := imx-xtor.o
 snd-soc-imx-sii902x-objs := imx-sii902x.o
 snd-soc-imx-spdif-objs := imx-spdif.o
@@ -73,19 +72,6 @@ snd-soc-imx-mqs-objs := imx-mqs.o
 snd-soc-imx-si476x-objs := imx-si476x.o
 snd-soc-imx-hdmi-objs := imx-hdmi.o
 snd-soc-imx-rpmsg-objs := imx-rpmsg.o
-snd-soc-adau1701-objs := adau1701.o
-snd-soc-adau17x1-objs := adau17x1.o
-snd-soc-adau1761-objs := adau1761.o
-snd-soc-adau1761-i2c-objs := adau1761-i2c.o
-snd-soc-adau1761-objs := adau1761-spi.o
-snd-soc-adau1781-objs := adau1781.o
-snd-soc-adau1781-i2c-objs := adau1781-i2c.o
-snd-soc-adau1781-spi-objs := adau1781-spi.o
-snd-soc-adau1977-objs := adau1977.o
-snd-soc-adau1977-spi-objs := adau1977-spi.o
-snd-soc-adau1977-i2c-objs := adau1977-i2c.o
-
-
 
 obj-$(CONFIG_SND_SOC_EUKREA_TLV320) += snd-soc-eukrea-tlv320.o
 obj-$(CONFIG_SND_SOC_PHYCORE_AC97) += snd-soc-phycore-ac97.o
@@ -96,8 +82,7 @@ obj-$(CONFIG_SND_SOC_IMX_CS42888) += snd-soc-imx-cs42888.o
 obj-$(CONFIG_SND_SOC_IMX_SGTL5000) += snd-soc-imx-sgtl5000.o
 obj-${CONFIG_SND_SOC_IMX_WM8958} += snd-soc-imx-wm8958.o
 obj-$(CONFIG_SND_SOC_IMX_WM8960) += snd-soc-imx-wm8960.o
-obj-$(CONFIG_SND_SOC_IMX_WM8962) += adau1761.o
-# snd-soc-imx-wm8962.o
+obj-$(CONFIG_SND_SOC_IMX_WM8962) += snd-soc-imx-wm8962.o
 obj-$(CONFIG_SND_SOC_IMX_XTOR) += snd-soc-imx-xtor.o
 obj-$(CONFIG_SND_SOC_IMX_RPMSG) += snd-soc-imx-rpmsg.o
 obj-$(CONFIG_SND_SOC_IMX_SII902X) += snd-soc-imx-sii902x.o

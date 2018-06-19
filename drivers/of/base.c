@@ -42,9 +42,6 @@ struct device_node *of_aliases;
 struct device_node *of_stdout;
 static const char *of_stdout_options;
 
-
-extern bool g_chet;
-
 struct kset *of_kset;
 
 /*
@@ -227,17 +224,10 @@ static struct property *__of_find_property(const struct device_node *np,
 {
 	struct property *pp;
 
-	if (!np) {
-if(g_chet) {
-printk(KERN_WARNING "__of_find_property 1\n");
-}
+	if (!np)
 		return NULL;
-}
 
 	for (pp = np->properties; pp; pp = pp->next) {
-if(g_chet) {
-printk(KERN_WARNING "__of_find_property pp->name = %s name = %s\n", pp->name, name);
-}
 		if (of_prop_cmp(pp->name, name) == 0) {
 			if (lenp)
 				*lenp = pp->length;
@@ -1474,47 +1464,27 @@ EXPORT_SYMBOL_GPL(of_property_read_string);
  * This function searches a string list property and returns the index
  * of a specific string value.
  */
-
 int of_property_match_string(const struct device_node *np, const char *propname,
 			     const char *string)
 {
-	const struct property *prop;
-if(g_chet) {
-   printk(KERN_WARNING "of_property_match_string propname = %s string = %s\n",propname, string);
-}
-
- prop = of_find_property(np, propname, NULL);
+	const struct property *prop = of_find_property(np, propname, NULL);
 	size_t l;
 	int i;
 	const char *p, *end;
 
-	if (!prop) {
-if(g_chet) {
-   printk(KERN_WARNING "of_property_match_string -EINVAL \n");
-}
+	if (!prop)
 		return -EINVAL;
-}
-	if (!prop->value) {
-if(g_chet) {
-   printk(KERN_WARNING "of_property_match_string -ENODATA \n");
-}
+	if (!prop->value)
 		return -ENODATA;
-}
 
 	p = prop->value;
 	end = p + prop->length;
 
-if(g_chet) {
-   printk(KERN_WARNING "of_property_match_string - end = %X\n", (unsigned int)end);
-}
 	for (i = 0; p < end; i++, p += l) {
 		l = strnlen(p, end - p) + 1;
 		if (p + l > end)
 			return -EILSEQ;
 		pr_debug("comparing %s with %s\n", string, p);
-if(g_chet) {
-   printk(KERN_WARNING "of_property_match_string - comparing %s with %s\n", string, p);
-}
 		if (strcmp(string, p) == 0)
 			return i; /* Found it; return index */
 	}
